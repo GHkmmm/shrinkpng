@@ -1,18 +1,23 @@
 {
   "name": "shrinkjs",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Compress the image files obtained by the front end",
   "main": "dist/bundle.js",
   "private": false,
   "scripts": {
+    "dev": "vite",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rollup -c"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "pako": "^2.0.4",
+    "uzip": "^0.20201231.0"
+  },
   "devDependencies": {
-    "rollup": "^2.74.0"
+    "rollup": "^2.74.0",
+    "vite": "^2.9.9"
   }
 }

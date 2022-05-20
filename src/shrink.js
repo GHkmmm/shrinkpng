@@ -2,18 +2,18 @@
  * @Author: guoming1.huang
  * @Date: 2022-05-20 09:03:20
  * @LastEditors: guoming1.huang
- * @LastEditTime: 2022-05-20 13:53:28
- * @FilePath: /shrinkjs/src/compress.js
+ * @LastEditTime: 2022-05-20 18:10:01
+ * @FilePath: /shrinkjs/src/shrink.js
  * @Description:
  *
  * Copyright (c) 2022 by tumax_guoming.huang, All Rights Reserved.
  */
-import "./js/poko.js";
 import UPNG from "./js/UPNG.js";
 
 var MAX_HEIGHT = 20000;
 
 class Compress {
+  file = null;
   options = {
     quality: 80,
   };
@@ -23,19 +23,20 @@ class Compress {
       ...this.options,
       ...options,
     };
-    this.compressImage(file);
+    this.file = file;
   }
 
-  async compressImage(file) {
+  async shrinkImage() {
+    const file = this.file;
     const imageUrl = await this.loadImage(file);
-    const _file = await this.getImageData(imageUrl);
-    console.log("_file", _file);
+    const _file = await this.getImageData(imageUrl, file);
     console.log(
       `compress image size from ${file.size / 1024}kb to ${_file.size / 1024}kb`
     );
+    return _file;
   }
 
-  getImageData(imageUrl) {
+  getImageData(imageUrl, originFile) {
     return new Promise((resolve) => {
       // 创建一个 Image 对象
       var image = new Image();
@@ -68,7 +69,11 @@ class Compress {
           image.height,
           this.getCompressBit()
         );
-        resolve(new File([png], "filename"));
+        resolve(
+          new File([png], originFile.name, {
+            type: originFile.type,
+          })
+        );
       };
       // 设置src属性，浏览器会自动加载。
       // 记住必须先绑定事件，才能设置src属性，否则会出同步问题。

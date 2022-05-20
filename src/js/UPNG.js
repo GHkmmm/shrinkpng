@@ -1,3 +1,6 @@
+import UZIP from "uzip";
+import pako from "pako";
+
 var UPNG = {};
 
 UPNG.toRGBA8 = function (out) {
