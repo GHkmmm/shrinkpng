@@ -1,8 +1,8 @@
 {
   "name": "shrinkjs",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "Compress the image files obtained by the front end",
-  "main": "dist/bundle.js",
+  "main": "dist/shrink.js",
   "private": false,
   "scripts": {
     "dev": "vite",

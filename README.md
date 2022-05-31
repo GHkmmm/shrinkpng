@@ -27,13 +27,12 @@ yarn add shrinkjs
 然后在你的代码中引入 shrinkjs
 
 ```js
-import Shrink from "shrinkjs";
+import { shrinkImage } from "shrinkjs";
 
 ...
-const shrink = new Shrink(file, {
-  quality: 80, // compress quality
+const _file = await shrinkImage(file, {
+  quality: 80
 });
-const _file = await shrink.shrinkImage()
 ```
 
 #### Vue 文件示例
@@ -53,17 +52,16 @@ const _file = await shrink.shrinkImage()
 </template>
 
 <script>
-import Shrink from "shrinkjs";
+import { shrinkImage } from "shrinkjs";
 
 export default {
   name: "App",
   mounted() {
     document.getElementById("imgUpFile").addEventListener("change", (e) => {
       const file = e.target.files[0];
-      const shrink = new Shrink(file, {
-        quality: 80,
-      });
-      const _file = await shrink.shrinkImage(); // compress file
+      const _file = await shrinkImage(file, {
+        quality: 80
+      }); // compress file
     });
   },
 };

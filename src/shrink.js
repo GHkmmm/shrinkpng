@@ -2,7 +2,7 @@
  * @Author: guoming1.huang
  * @Date: 2022-05-20 09:03:20
  * @LastEditors: guoming1.huang
- * @LastEditTime: 2022-05-20 18:10:01
+ * @LastEditTime: 2022-05-31 15:52:37
  * @FilePath: /shrinkjs/src/shrink.js
  * @Description:
  *
@@ -12,28 +12,42 @@ import UPNG from "./js/UPNG.js";
 
 var MAX_HEIGHT = 20000;
 
-class Compress {
+class Shrink {
   file = null;
   options = {
     quality: 80,
+    success: () => {},
+    error: () => {},
+    complete: () => {},
   };
 
   constructor(file, options) {
+    this.initParams(file, options);
+    this.shrinkImage();
+  }
+
+  initParams(file, options) {
+    this.file = file;
     this.options = {
       ...this.options,
       ...options,
     };
-    this.file = file;
   }
 
   async shrinkImage() {
     const file = this.file;
-    const imageUrl = await this.loadImage(file);
-    const _file = await this.getImageData(imageUrl, file);
-    console.log(
-      `compress image size from ${file.size / 1024}kb to ${_file.size / 1024}kb`
-    );
-    return _file;
+    try {
+      const imageUrl = await this.loadImage(file);
+      const _file = await this.getImageData(imageUrl, file);
+      this.options.success(_file);
+      console.log(
+        `compress image size from ${file.size / 1024}kb to ${
+          _file.size / 1024
+        }kb`
+      );
+    } catch (error) {
+      this.options.error(error);
+    }
   }
 
   getImageData(imageUrl, originFile) {
@@ -89,7 +103,6 @@ class Compress {
     } else {
       bit = !quality ? 0 : quality * 256 * 0.01;
     }
-    console.log("bit is", bit);
     return bit;
   }
 
@@ -111,4 +124,4 @@ class Compress {
   }
 }
 
-export default Compress;
+export default Shrink;
