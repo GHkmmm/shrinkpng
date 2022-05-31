@@ -5,6 +5,8 @@
 <p align="center">
   🚀 <a href="https://www.npmjs.com/package/shrinkjs" target="_blank">npm</a>
 </p>
+
+
 使用[UPNG.js](https://github.com/photopea/UPNG.js/blob/master/README.md)对 PNG 文件进行有损缩小，类似于[TinyPNG](https://tinypng.com/)和其他工具。
 
 ## 安装
@@ -68,3 +70,4 @@ export default {
 };
 </script>
 ```
+
