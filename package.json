@@ -1,6 +1,6 @@
 {
   "name": "shrinkjs",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0",
   "description": "Compress the image files obtained by the front end",
   "main": "dist/shrink.js",
   "types": "dist/index.d.ts",
