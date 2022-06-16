@@ -2,31 +2,31 @@
  * @Author: guoming1.huang
  * @Date: 2022-05-20 09:03:20
  * @LastEditors: guoming1.huang
- * @LastEditTime: 2022-05-31 15:52:37
- * @FilePath: /shrinkjs/src/shrink.js
+ * @LastEditTime: 2022-06-16 11:06:08
+ * @FilePath: /shrinkjs/src/shrink.ts
  * @Description:
  *
  * Copyright (c) 2022 by tumax_guoming.huang, All Rights Reserved.
  */
-import UPNG from "./js/UPNG.js";
+import { IShrinkOptions } from "./types/index";
+import UPNG from "./utils/UPNG.js";
 
 var MAX_HEIGHT = 20000;
 
 class Shrink {
-  file = null;
-  options = {
+  file: any = null;
+  options: IShrinkOptions = {
     quality: 80,
     success: () => {},
     error: () => {},
-    complete: () => {},
   };
 
-  constructor(file, options) {
+  constructor(file: File, options: IShrinkOptions) {
     this.initParams(file, options);
     this.shrinkImage();
   }
 
-  initParams(file, options) {
+  initParams(file: File, options: IShrinkOptions) {
     this.file = file;
     this.options = {
       ...this.options,
@@ -50,14 +50,14 @@ class Shrink {
     }
   }
 
-  getImageData(imageUrl, originFile) {
+  getImageData(imageUrl: string, originFile: File): Promise<File> {
     return new Promise((resolve) => {
       // 创建一个 Image 对象
       var image = new Image();
       // 绑定 load 事件处理器，加载完成后执行
       image.onload = () => {
         // 获取 canvas DOM 对象
-        var canvas = document.createElement("canvas");
+        const canvas = document.createElement("canvas");
         // 如果高度超标
         if (image.height > MAX_HEIGHT) {
           // 宽度等比例缩放 *=
@@ -66,7 +66,10 @@ class Shrink {
         }
         // 获取 canvas的 2d 环境对象,
         // 可以理解Context是管理员，canvas是房子
-        var ctx = canvas.getContext("2d");
+        const ctx = canvas.getContext("2d");
+        if (!ctx) {
+          return originFile;
+        }
         // canvas清屏
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         // 重置canvas宽高
@@ -106,7 +109,7 @@ class Shrink {
     return bit;
   }
 
-  loadImage(file) {
+  loadImage(file: File): Promise<string> {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onloadstart = function () {
@@ -114,7 +117,9 @@ class Shrink {
       };
       //操作完成
       reader.onload = function (e) {
-        resolve(reader.result);
+        if (reader.result && typeof reader.result == "string") {
+          resolve(reader.result);
+        }
       };
       reader.onerror = function (e) {
         reject(e);

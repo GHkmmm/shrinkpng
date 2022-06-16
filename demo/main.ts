@@ -9,7 +9,7 @@
  * Copyright (c) 2022 by tumax_guoming.huang, All Rights Reserved.
  */
 // import { shrinkImage } from "../dist/shrink.js";
-import { shrinkImage } from "./utils.js";
+import { shrinkImage } from "../src/utils/index.js";
 
 document.getElementById("imgUpFile").addEventListener("change", async (e) => {
   const img_origin = document.getElementById("img_origin");
