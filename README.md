@@ -3,8 +3,10 @@
 <p align="center" style="color:#0066cc;font-size:18px">Compress the image files obtained by the front end</p>
 
 <p align="center">
+  🌍 <a href="https://github.com/GHkmmm/shrinkjs" target="_blank">github</a>&nbsp;&nbsp;
   🚀 <a href="https://www.npmjs.com/package/shrinkjs" target="_blank">npm</a>
 </p>
+
 
 
 使用[UPNG.js](https://github.com/photopea/UPNG.js)对 PNG 文件进行有损缩小，类似于[TinyPNG](https://tinypng.com/)和其他工具。
