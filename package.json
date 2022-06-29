@@ -1,6 +1,6 @@
 {
   "name": "shrinkjs",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "Compress the image files obtained by the front end",
   "main": "dist/shrink.js",
   "types": "dist/index.d.ts",
@@ -36,5 +36,5 @@
     "type": "git",
     "url": "git+https://github.com/GHkmmm/shrinkjs.git"
   },
-  "homepage": "https://github.com/GHkmmm/shrinkjs#readme"
+  "homepage": "http://www.tracex.top/compress"
 }

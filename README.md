@@ -3,9 +3,11 @@
 <p align="center" style="color:#0066cc;font-size:18px">Compress the image files obtained by the front end</p>
 
 <p align="center">
-  🌍 <a href="https://github.com/GHkmmm/shrinkjs" target="_blank">github</a>&nbsp;&nbsp;
-  🚀 <a href="https://www.npmjs.com/package/shrinkjs" target="_blank">npm</a>
+  💻 <a href="http://www.tracex.top/compress" target="_blank">Official website</a>&nbsp;&nbsp;
+  🌍 <a href="https://github.com/GHkmmm/shrinkjs" target="_blank">Github</a>&nbsp;&nbsp;
+  🚀 <a href="https://www.npmjs.com/package/shrinkjs" target="_blank">Npm</a>
 </p>
+
 
 
 
