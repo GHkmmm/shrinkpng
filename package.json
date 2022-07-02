@@ -1,8 +1,8 @@
 {
-  "name": "shrinkjs",
-  "version": "2.2.0-beta.1",
+  "name": "shrink-png",
+  "version": "0.1.0",
   "description": "Compress the image files obtained by the front end",
-  "main": "dist/shrink.js",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "private": false,
   "scripts": {
