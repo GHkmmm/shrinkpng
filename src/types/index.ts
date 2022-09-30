@@ -10,8 +10,8 @@
  */
 export interface IShrinkOptions {
   quality: number;
-  success(file: File): void;
-  error(err: any): void;
+  success?: (file: File) => void;
+  error?: (err: any) => void;
 }
 
 export interface IShrinkImageOptions {

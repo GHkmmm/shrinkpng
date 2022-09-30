@@ -15,16 +15,8 @@ export async function shrinkImage(
   file: File,
   { quality }: IShrinkImageOptions = { quality: 80 }
 ): Promise<File> {
-  return new Promise((rs, rj) => {
-    if (!file) rj(new Error("file can not be empty"));
-    new Shrink(file, {
-      quality,
-      success(_file) {
-        rs(_file);
-      },
-      error(err) {
-        rj(err);
-      },
-    });
+  const shrink = new Shrink({
+    quality,
   });
+  return await shrink.shrinkImage(file);
 }
