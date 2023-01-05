@@ -1,8 +1,8 @@
 /*
  * @Author: guoming1.huang
  * @Date: 2022-09-28 14:16:40
- * @LastEditors: guoming1.huang
- * @LastEditTime: 2022-09-30 11:38:35
+ * @LastEditors: otis
+ * @LastEditTime: 2023-01-05 20:56:39
  * @FilePath: /shrinkpng/src/shrink.ts
  * @Description:
  *
@@ -24,7 +24,7 @@ class Shrink {
   };
 
   constructor(options: IShrinkOptions) {
-    Object.assign(options, this.options);
+    Object.assign(this.options, options);
   }
 
   async shrinkImage(file: File): Promise<File> {
