@@ -1,21 +1,17 @@
 /*
  * @Author: guoming1.huang
  * @Date: 2022-09-28 14:16:40
- * @LastEditors: otis
- * @LastEditTime: 2023-01-05 20:56:39
+ * @LastEditors: guoming1.huang
+ * @LastEditTime: 2023-01-13 16:30:18
  * @FilePath: /shrinkpng/src/shrink.ts
  * @Description:
  *
  * Copyright (c) 2022 by tumax_guoming.huang, All Rights Reserved.
  */
 import { IShrinkOptions } from "./types/index";
-import {
-  fileToDataURL,
-  dataURLToImage,
-  canvastoFile,
-  convertQualityToBit,
-} from "./utils/image";
-import UPNG from "./utils/UPNG.js";
+import { fileToDataURL, dataURLToImage, canvastoFile } from "./utils/image";
+import { shrinkPngByWorker } from "./utils/worker";
+
 class Shrink {
   options: IShrinkOptions = {
     quality: 80,
@@ -58,9 +54,11 @@ class Shrink {
           img.width,
           img.height
         ).data;
-        const bit = convertQualityToBit(this.options.quality);
-
-        const png = UPNG.encode([imageData.buffer], img.width, img.height, bit);
+        const png = await shrinkPngByWorker({
+          img,
+          imageData,
+          quality: this.options.quality,
+        });
         return new File([png], file.name, {
           type: file.type,
         });

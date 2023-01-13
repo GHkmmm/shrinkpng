@@ -2,7 +2,7 @@
  * @Author: guoming1.huang
  * @Date: 2022-05-13 11:22:37
  * @LastEditors: guoming1.huang
- * @LastEditTime: 2022-09-30 11:26:35
+ * @LastEditTime: 2023-01-13 17:52:34
  * @FilePath: /shrinkpng/index.html
  * @Description: 123
  * 
@@ -16,24 +16,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+      .header {
+      }
+      .image-container {
+        display: flex;
+        margin-top: 10px;
+      }
       #img_origin,
       #img_compress {
-        max-width: 100vw;
-        max-height: 50vh;
+        flex: 1;
       }
     </style>
   </head>
   <html>
     <body>
-      <input
-        type="file"
-        class="file"
-        id="imgUpFile"
-        style="position: absolute; left: 0; top: 0; width: 100%; height: 100%"
-      />
-      <img id="img_origin" src="" alt="" />
-      <img id="img_compress" src="" alt="" />
+      <div class="header">
+        <input type="file" class="file" id="imgUpFile" />
+        <button onclick="handleClick()">+1</button>
+        <span id="count"></span>
+      </div>
+      <div class="image-container">
+        <img id="img_origin" src="" alt="" />
+        <img id="img_compress" src="" alt="" />
+      </div>
     </body>
     <script type="module" src="/demo/main.ts"></script>
+    <script>
+      let count = 1;
+      function handleClick() {
+        document.getElementById("count").innerHTML = count++;
+      }
+    </script>
   </html>
 </html>
